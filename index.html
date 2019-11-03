@@ -3,11 +3,24 @@
 	<script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
 
 <style>
-.flex-container {
-  display: flex;
+  body {
+    margin: 0px;
+    width: 100%;
+    font-family: 'Helvetica';
+  }
+
+#wrapper {
+  width: 800px;
+  margin: 20px auto;
 }
 
-.apple-box > div{
+.flex-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.apple-box > div {
 background: #f5f5f5;
 border: 1px solid #FFF;
 border-radius: 5px;
@@ -17,42 +30,104 @@ box-shadow: 1px 2px 4px rgba(0,0,0,.4);
 }
 
 .flex-container > div {
-  background-color: #f1f1f1;
+  background-color: #000;
   margin: 10px;
   padding: 20px;
   font-size: 30px;
 }
-.flex-container > div > div {
+
+
+.title {
+      color: #fff;
   font-size: 15px;
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica';
+  font-weight: 'lighter';
   margin-bottom: 15px;
 }
+
+a {
+  color: #333;
+}
+a:hover {
+  color: #777;
+}
+
+.shader-box a {
+  color:#fff;
+  text-decoration: none;
+}
+
+.shader-box a:hover {
+  color:#999;
+  text-decoration: underline;
+}
+
+
+
 
 </style>
 <script>
 
-var frag = [
-"https://raw.githubusercontent.com/patriciogonzalezvivo/thebookofshaders/master/05/expstep.frag"
-]
+var url = "https://raw.githubusercontent.com/xanpj/shaderexamples/master/shaders/";
+var url_gt = "https://github.com/xanpj/shaderexamples/blob/master/shaders/";
+var frags = [
+  "graphicnukelights.frag",
+  "graphicscheckers.frag",
+  "graphicscolourful.frag",
+  "graphicscrazyfract.frag",
+  "graphicscubeszoom.frag",
+  "graphicsfunkygrid.frag",
+  "graphicsineidea.frag",
+  "graphicsineideawaterbones.frag",
+  "graphicsmovingbrick.frag",
+  "graphicsnoise2dflip.frag",
+  "graphicsnoisycircle.frag",
+  "graphicsshapesdenimtexture.frag",
+  "graphicsshapeswithnoiseanim.frag",
+  "graphicsspinningwheel.frag",
+  "graphicstilingrotation.frag",
+  "graphicswavy.frag",
+  "grapichsrandombarcode.frag"
+];
+
+/*
+var l3 = [];
+var elms = document.getElementsByClassName("css-truncate css-truncate-target")
+for(let i = 0;i < Array.from(elms).length;i++) {l2.push(Array.from(elms)[i].textContent)}
+*/
+
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1)
+}
+String.prototype.trimGraphics = function() {
+  return this.replace(/^(graphics|graphic)/, "")
+}
 
 </script>
 
  </head>
  <body>
  
- <div id="shader-container" class="flex-container apple-box">
-  <div>
-    <div class="title">Title</div>
-    <div>
-      <canvas class="glslCanvas" data-fragment-url="" width="500" height="500"></canvas>
-    </div>
-  </div>
-  <div>2</div>
-  <div>3</div>
-</div> 
+ <div id="wrapper">
+
+   <span>Below is a list of fragment shaders I have developed while learning from the <a class="reallink" href="https://thebookofshaders.com/">The Book of Shaders</a></span>
+
+   <div id="shader-container" class="flex-container apple-box">
+   </div>
+
+</div>
 
 <script>
-  document.getElementById('shader-container').children[0].children[1].children[0].setAttribute('data-fragment-url', 'https://raw.githubusercontent.com/patriciogonzalezvivo/thebookofshaders/master/05/expstep.frag');
+  for(let i = 0;i < frags.length;i++){
+    let frag = frags[i];
+    document.getElementById('shader-container').innerHTML += "<div class='shader-box'><a target='_blank' href="+url_gt+frag+">"+
+    "<div class='title'>"+frag.trimGraphics().capitalize()+"</div>"+
+    "<div>"+
+      "<canvas class='glslCanvas' data-fragment-url="+url+frag+" width='200%' height='200%'></canvas>"+
+    "</div></a>"+
+  "</div>";
+  };
 </script>
 
  </body>
