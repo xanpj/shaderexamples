@@ -1,0 +1,59 @@
+ <html>
+ <head>
+	<script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
+<style>
+.flex-container {
+  display: flex;
+}
+
+.apple-box > div{
+background: #f5f5f5;
+border: 1px solid #FFF;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+box-shadow: 1px 2px 4px rgba(0,0,0,.4);
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+.flex-container > div > div {
+  font-size: 15px;
+  font-family: 'Helvetica Neue';
+  margin-bottom: 15px;
+}
+
+</style>
+<script>
+
+var frag = [
+"https://raw.githubusercontent.com/patriciogonzalezvivo/thebookofshaders/master/05/expstep.frag"
+]
+
+</script>
+
+ </head>
+ <body>
+ 
+ <div id="shader-container" class="flex-container apple-box">
+  <div>
+    <div class="title">Title</div>
+    <div>
+      <canvas class="glslCanvas" data-fragment-url="" width="500" height="500"></canvas>
+    </div>
+  </div>
+  <div>2</div>
+  <div>3</div>
+</div> 
+
+<script>
+  document.getElementById('shader-container').children[0].children[1].children[0].setAttribute('data-fragment-url', 'https://raw.githubusercontent.com/patriciogonzalezvivo/thebookofshaders/master/05/expstep.frag');
+</script>
+
+ </body>
+ </html>
