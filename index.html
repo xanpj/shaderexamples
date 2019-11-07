@@ -86,18 +86,17 @@ var frags = [
   "graphicshapesdenimtexture.frag",
   "graphicshapeswithnoiseanim.frag",
   "graphicspinningwheel.frag",
-  "graphictilingrotation.frag",
+  "graphicstilingrotation.frag",
   "graphicwavy.frag",
   "graphicrandombarcode.frag",
   "graphiccoloredtextures.frag",
-  "graphicrandomnoisebars.frag",
   "graphiccoloredoutlineboxes2.frag",
   "graphicshapesinnoise.frag",
-  "graphicopticalillusionsliding.frag",
-  "graphicbreathingcells.frag",
-  "graphicbarcodesvert.frag",
+  //"graphicopticalillusionsliding.frag",
+  //"graphicbreathingcells.frag",
+  //"graphicbarcodesvert.frag",
   "graphicnoisycamera.frag",
-  "graphiccellflow.frag",
+  //"graphiccellflow.frag",
   "graphicnoisyoutlinesquare.frag",
   "graphicpointwaves.frag",
   "graphicscanninglines.frag",
@@ -107,16 +106,14 @@ var frags = [
   "graphicnoisesintexture.frag",
   "graphicrgbcityview.frag",
   "graphicsparklynoise.frag",
-  "graphiccellsappearingbwfull.frag",
-  "graphiccellscentralanimfromcells.frag",
-  "graphiccellsnoiseframe.frag",
-  "graphiccellsraysoneangle.frag",
-  "graphiccellsnoisyfloor.frag",
+  //"graphiccellsappearingbwfull.frag",
+  //"graphiccellscentralanimfromcells.frag",
+  //"graphiccellsnoiseframe.frag",
+  //"graphiccellsraysoneangle.frag",
+  //"graphiccellsnoisyfloor.frag",
 ];
 
 var fragsInView = 3;
-
-
 
 let oldFragsInView = 0;
 window.offset = 0;
@@ -192,7 +189,7 @@ String.prototype.trimgraphic = function() {
   };
   document.getElementById('shader-container').innerHTML = html;
 }
-renderShaderBoxes(10);
+renderShaderBoxes(20);
 /*window.setInterval(function() {window.offset = window.offset+1; renderShaderBoxes(++window.offset)}, 3000);*/
 
 </script>
