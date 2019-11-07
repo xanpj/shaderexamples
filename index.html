@@ -92,9 +92,9 @@ var frags = [
   "graphiccoloredtextures.frag",
   "graphiccoloredoutlineboxes2.frag",
   "graphicshapesinnoise.frag",
-  //"graphicopticalillusionsliding.frag",
-  //"graphicbreathingcells.frag",
-  //"graphicbarcodesvert.frag",
+  "graphicopticalillusionsliding.frag",
+  "graphicbreathingcells.frag",
+  "graphicbarcodesvert.frag",
   "graphicnoisycamera.frag",
   //"graphiccellflow.frag",
   "graphicnoisyoutlinesquare.frag",
@@ -114,6 +114,7 @@ var frags = [
 ];
 
 var fragsInView = 3;
+
 
 let oldFragsInView = 0;
 window.offset = 0;
@@ -170,7 +171,7 @@ String.prototype.trimgraphic = function() {
     let shaderIndex;
     for(let i = 0;i < numInView;i++){
       do {
-         shaderIndex = Math.round(Math.random() * frags.length);
+         shaderIndex = Math.round(Math.random() * (frags.length-1));
       }
       while(displayedIndexes.indexOf(shaderIndex) > -1)
       displayedIndexes.push(shaderIndex);
@@ -189,7 +190,7 @@ String.prototype.trimgraphic = function() {
   };
   document.getElementById('shader-container').innerHTML = html;
 }
-renderShaderBoxes(20);
+renderShaderBoxes(15);
 /*window.setInterval(function() {window.offset = window.offset+1; renderShaderBoxes(++window.offset)}, 3000);*/
 
 </script>
