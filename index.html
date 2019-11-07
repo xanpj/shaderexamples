@@ -68,54 +68,64 @@ a:hover {
 </style>
 <script>
 
+
 var url = "https://raw.githubusercontent.com/xanpj/shaderexamples/master/shaders/";
 var url_gt = "https://github.com/xanpj/shaderexamples/blob/master/shaders/";
 var frags = [
   "graphicnukelights.frag",
-  "graphicscheckers.frag",
-  "graphicscolourful.frag",
-  "graphicscrazyfract.frag",
-  "graphicscubeszoom.frag",
-  "graphicsfunkygrid.frag",
+  "graphiccheckers.frag",
+  "graphiccolourful.frag",
+  "graphiccrazyfract.frag",
+  "graphiccubeszoom.frag",
+  "graphicfunkygrid.frag",
   "graphicsineidea.frag",
   "graphicsineideawaterbones.frag",
-  "graphicsmovingbrick.frag",
-  "graphicsnoise2dflip.frag",
-  "graphicsnoisycircle.frag",
-  "graphicsshapesdenimtexture.frag",
-  "graphicsshapeswithnoiseanim.frag",
-  "graphicsspinningwheel.frag",
-  "graphicstilingrotation.frag",
-  "graphicswavy.frag",
-  "grapichsrandombarcode.frag",
-  "graphicscoloredtextures.frag",
-  "graphicsrandomnoisebars.frag",
-  "graphicscoloredoutlineboxes2.frag",
-  "graphicsshapesinnoise.frag",
-  "graphicsopticalillusionsliding.frag",
-  "graphicsbreathingcells.frag",
-  "graphicsbarcodesvert.frag",
-  "graphicsnoisycamera.frag",
-  "graphicscellflow.frag",
+  "graphicmovingbrick.frag",
+  "graphicnoise2dflip.frag",
+  "graphicnoisycircle.frag",
+  "graphicshapesdenimtexture.frag",
+  "graphicshapeswithnoiseanim.frag",
+  "graphicspinningwheel.frag",
+  "graphictilingrotation.frag",
+  "graphicwavy.frag",
+  "graphicrandombarcode.frag",
+  "graphiccoloredtextures.frag",
+  "graphicrandomnoisebars.frag",
+  "graphiccoloredoutlineboxes2.frag",
+  "graphicshapesinnoise.frag",
+  "graphicopticalillusionsliding.frag",
+  "graphicbreathingcells.frag",
+  "graphicbarcodesvert.frag",
+  "graphicnoisycamera.frag",
+  "graphiccellflow.frag",
   "graphicnoisyoutlinesquare.frag",
   "graphicpointwaves.frag",
   "graphicscanninglines.frag",
   "graphicmovingpartylight.frag",
   "graphicexplodingcircle.frag",
-  "graphiccircleoflights.frag",
   "graphicpulsatinggrid.frag",
   "graphicnoisesintexture.frag",
   "graphicrgbcityview.frag",
   "graphicsparklynoise.frag",
-  "graphiccellswithborders.frag",
-  "graphiccellsfilledwithnoise.frag",
   "graphiccellsappearingbwfull.frag",
   "graphiccellscentralanimfromcells.frag",
   "graphiccellsnoiseframe.frag",
   "graphiccellsraysoneangle.frag",
   "graphiccellsnoisyfloor.frag",
-  "graphicfbmnoisewarp.frag"
 ];
+
+var fragsInView = 3;
+
+window.addEventListener('scroll', function (event) {
+    var doc = document.documentElement;
+    var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+    var varfragnum = top / 100;
+
+    console.log(top);
+}, false);
+
 
 /*
 var l3 = [];
@@ -127,9 +137,10 @@ for(let i = 0;i < Array.from(elms).length;i++) {l2.push(Array.from(elms)[i].text
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1)
 }
-String.prototype.trimGraphics = function() {
-  return this.replace(/^(graphics|graphic)/, "")
+String.prototype.trimgraphic = function() {
+  return this.replace(/^(graphic)/, "")
 }
+
 
 </script>
 
@@ -146,15 +157,18 @@ String.prototype.trimGraphics = function() {
 </div>
 
 <script>
-  for(let i = 0;i < frags.length;i++){
+   for(let i = 0;i < frags.length;i++){
     let frag = frags[i];
+    console.log(fragsInView)
+    let fragurl = url+frag;
+    let fragCanvas = (fragsInView > i) ? "<canvas class='glslCanvas' data-fragment-url="+fragurl+" width='200%' height='200%'></canvas>" : "<div height='200px' width='200px'>Loading</div>";
     document.getElementById('shader-container').innerHTML += "<div class='shader-box'><a target='_blank' href="+url_gt+frag+">"+
-    "<div class='title'>"+frag.trimGraphics().capitalize()+"</div>"+
-    "<div>"+
-      "<canvas class='glslCanvas' data-fragment-url="+url+frag+" width='200%' height='200%'></canvas>"+
+    "<div class='title'>"+frag.trimgraphic().capitalize()+"</div>"+
+    "<div>"+fragCanvas+
     "</div></a>"+
   "</div>";
   };
+
 </script>
 
  </body>
