@@ -114,17 +114,25 @@ var frags = [
   "graphiccellsnoisyfloor.frag",
 ];
 
-var fragsInView = 4;
+var fragsInView = 3;
 
-window.addEventListener('scroll', function (event) {
+
+
+let oldFragsInView = 0;
+window.offset = 0;
+
+/*window.addEventListener('scroll', function (event) {
     var doc = document.documentElement;
     var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
     var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
-    var varfragnum = top / 100;
-
-    console.log(top);
-}, false);
+    fragsInView = Math.floor(top / 10);
+    if(oldFragsInView !== fragsInView){
+        oldFragsInView = fragsInView
+        window.renderShaderBoxes();
+        console.log("fragsInView" + fragsInView);
+    }
+}, false);*/
 
 
 /*
@@ -150,6 +158,8 @@ String.prototype.trimgraphic = function() {
  <div id="wrapper">
 
    <span>Below is a list of fragment shaders I have developed while learning from the <a class="reallink" href="https://thebookofshaders.com/">The Book of Shaders</a></span>
+   <br />
+   <span>Reload this page for a new set of shaders.</span>
 
    <div id="shader-container" class="flex-container apple-box">
    </div>
@@ -157,17 +167,33 @@ String.prototype.trimgraphic = function() {
 </div>
 
 <script>
-   for(let i = 0;i < frags.length;i++){
-    let frag = frags[i];
-    console.log(fragsInView)
-    let fragurl = url+frag;
-    let fragCanvas = (fragsInView > i) ? "<canvas class='glslCanvas' data-fragment-url="+fragurl+" width='200%' height='200%'></canvas>" : "<div height='200px' width='200px'>Loading</div>";
-    document.getElementById('shader-container').innerHTML += "<div class='shader-box'><a target='_blank' href="+url_gt+frag+">"+
-    "<div class='title'>"+frag.trimgraphic().capitalize()+"</div>"+
-    "<div>"+fragCanvas+
-    "</div></a>"+
-  "</div>";
+  function renderShaderBoxes(numInView){
+    var html = "";
+    var displayedIndexes = [];
+    let shaderIndex;
+    for(let i = 0;i < numInView;i++){
+      do {
+         shaderIndex = Math.round(Math.random() * frags.length);
+      }
+      while(displayedIndexes.indexOf(shaderIndex) > -1)
+      displayedIndexes.push(shaderIndex);
+      console.log(shaderIndex);
+      let frag = frags[shaderIndex];
+      let fragurl = url+frag;
+      let inView = displayedIndexes.indexOf(i) !== -1;
+      if(document.getElementById('shader-container') !== null){
+        let fragCanvas = (true) ? "<canvas class='glslCanvas' data-fragment-url="+fragurl+" width='200%' height='200%'></canvas>" : "<div height='200px' width='200px'>Loading</div>";
+        html += "<div class='shader-box'><a target='_blank' href="+url_gt+frag+">"+
+        "<div class='title'>"+frag.trimgraphic().capitalize()+"</div>"+
+        "<div>"+fragCanvas+
+        "</div></a>"+
+      "</div>";
+    }
   };
+  document.getElementById('shader-container').innerHTML = html;
+}
+renderShaderBoxes(10);
+/*window.setInterval(function() {window.offset = window.offset+1; renderShaderBoxes(++window.offset)}, 3000);*/
 
 </script>
 
